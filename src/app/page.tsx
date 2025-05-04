@@ -17,17 +17,25 @@ const locations = [
 ];
 
 const qualityMarks1 = [
-  { name: "installq.svg", path: "/quality/installq.svg" },
-  { name: "zrn.svg", path: "/quality/zrn.svg" },
-  { name: "techniek.svg", path: "/quality/techniek.svg" },
-  { name: "bbl.svg", path: "/quality/bbl.svg" },
-  { name: "storage.svg", path: "/quality/storage.svg" },
-  { name: "holland.svg", path: "/quality/holland.svg" },
+  { name: "installq.svg", imagePath: "/quality/installq.svg", href: "/" },
+  { name: "zrn.svg", imagePath: "/quality/zrn.svg", href: "/" },
+  { name: "techniek.svg", imagePath: "/quality/techniek.svg", href: "/" },
+  { name: "bbl.svg", imagePath: "/quality/bbl.svg", href: "/" },
+  { name: "storage.svg", imagePath: "/quality/storage.svg", href: "/" },
+  { name: "holland.svg", imagePath: "/quality/holland.svg", href: "/" },
 ];
 
 const qualityMarks2 = [
-  { name: "fd2.svg", path: "/quality/fd2.svg" },
-  { name: "fd.svg", path: "/quality/fd.svg" },
+  { name: "fd.svg", imagePath: "/quality/fd.svg", href: "/" },
+  { name: "fd2.svg", imagePath: "/quality/fd2.svg", href: "/" },
+];
+
+const discoverUsLinks = [
+  { name: "About us", href: "/" },
+  { name: "Knowledge Center", href: "/" },
+  { name: "Knowledge articles", href: "/" },
+  { name: "Service plan", href: "/" },
+  { name: "Working at", href: "/" },
 ];
 
 export default function Page() {
@@ -55,7 +63,7 @@ export default function Page() {
           {/* Newsletter Section */}
           <div className="flex flex-col md:flex-row gap-6 md:justify-between md:items-center">
             <div>
-              <h2 className="text-5xl font-medium mb-2 relative w-fit">
+              <h2 className="text-5xl font-medium mb-2 relative w-fit tracking-tight">
                 Stay{" "}
                 <span className="relative">
                   informed.
@@ -95,7 +103,7 @@ export default function Page() {
           <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-10">
             {/* Locations Column */}
             <div>
-              <h3 className="text-xl font-medium mb-6">Locations</h3>
+              <h3 className="text-xl font-medium mb-8">Locations</h3>
               <div className="space-y-1">
                 <div>
                   <a href="#" className="block py-1 hover:text-green-400">
@@ -117,7 +125,7 @@ export default function Page() {
 
             {/* Contact Column */}
             <div>
-              <h3 className="text-xl font-medium mb-6">Contact</h3>
+              <h3 className="text-xl font-medium mb-8">Contact</h3>
               <p className="mb-3">Direct contact</p>
               <div className="mb-6">
                 <p className="text-2xl font-medium">0486 - 831400</p>
@@ -129,19 +137,13 @@ export default function Page() {
 
             {/* Discover Us Column */}
             <div>
-              <h3 className="text-xl font-medium mb-6">Discover Us</h3>
+              <h3 className="text-xl font-medium mb-8">Discover Us</h3>
               <ul className="space-y-3">
-                {[
-                  "About us",
-                  "Knowledge Center",
-                  "Knowledge articles",
-                  "Service plan",
-                  "Working at",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="hover:text-green-400">
-                      {item}
-                    </a>
+                {discoverUsLinks.map((item) => (
+                  <li key={item.name} className="flex items-center gap-2">
+                    <Link href={item.href} className="hover:text-primary">
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -149,19 +151,19 @@ export default function Page() {
 
             {/* Quality Marks Column */}
             <div className="lg:col-span-2 md:col-span-3">
-              <h3 className="text-xl font-medium mb-6">Quality Marks</h3>
+              <h3 className="text-xl font-medium mb-8">Quality Marks</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {/* Placeholder for quality mark logos */}
                 {qualityMarks1.map((mark) => (
-                  <div key={mark.name} className="h-14 w-24">
+                  <Link key={mark.name} href={mark.href} className="h-14 w-24">
                     <Image
-                      src={mark.path}
+                      src={mark.imagePath}
                       alt={mark.name}
                       width={96}
                       height={56}
                       className="h-full w-full object-contain"
                     />
-                  </div>
+                  </Link>
                 ))}
               </div>
 
@@ -169,15 +171,19 @@ export default function Page() {
                 <Separator className="mb-6 bg-[#D9D9D9]" />
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {qualityMarks2.map((mark) => (
-                    <div key={mark.name} className="h-14 w-24">
+                    <Link
+                      key={mark.name}
+                      href={mark.href}
+                      className="h-14 w-24"
+                    >
                       <Image
-                        src={mark.path}
+                        src={mark.imagePath}
                         alt={mark.name}
                         width={96}
                         height={56}
                         className="h-full w-full object-contain"
                       />
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
